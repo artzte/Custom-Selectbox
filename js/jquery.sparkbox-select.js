@@ -42,7 +42,11 @@
       var $options = $select.children(),
           $dropdown = $('<ul data-id="' + i + '" class="sb-dropdown"/>');
       
-      $options.each(function() {
+      if(settings.exclude_first) {
+        $options = $options.filter(":not(:first)");
+      }
+
+      $.each($options, function() {
         $this = $(this);
         $dropdown.append('<li data-value="' + $this.val() + '"><a href=".">' + $this.text() + '</a></li>');
       });
